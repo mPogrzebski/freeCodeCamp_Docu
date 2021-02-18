@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Technical Documentation Page</title>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+  <nav class="" id="navbar">
+    <ul>
+      <header>RUST Documentation</header>
+      <li><a href="#Introduction" class="nav-link">Introduction</a></li>
+      <li><a href="#Hello_World" class="nav-link">Hello World</a></li>
+      <li><a href="#Hello_Cargo" class="nav-link">Hello Cargo</a></li>
+      <li><a href="#Common_programming_concepts" class="nav-link">Common programming concepts</a></li>
+      <li><a href="#Data_types" class="nav-link">Data types</a></li>
+    </ul>
+  </nav>
+
+
+  <main class="" id="main-doc">
+    <section class="main-section" id="Introduction">
+      <header>
+        <h1>Introduction</h1>
+      </header>
+      <p>The Rust programming language helps you write faster, more reliable software. High-level ergonomics and
+        low-level
+        control are often at odds in programming language design; Rust challenges that conflict. Through balancing
+        powerful
+        technical capacity and a great developer experience, Rust gives you the option to control low-level details
+        (such as
+        memory usage) without all the hassle traditionally associated with such control.</p>
+
+      <p>
+        If you're using Linux or macOS, open a terminal and enter the following command:
+      </p>
+
+      <code>curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
+      </code>
+
+      <p>The command downloads a script and starts the installation of the rustup tool, which installs the latest stable
+        version
+        of Rust. You might be prompted for your password. If the install is successful, the following line will appear:
+      </p>
+    </section>
+
+    <section class="main-section" id="Hello_World">
+      <header>
+        <h1>Hello World</h1>
+      </header>
+      <p>
+        Now that you’ve installed Rust, let’s write your first Rust program. It’s traditional when learning a new
+        language
+        to
+        write a little program that prints the text Hello, world! to the screen, so we’ll do the same here!
+      </p>
+      <p>
+        You’ll start by making a directory to store your Rust code. It doesn’t matter to Rust where your code lives, but
+        for the
+        exercises and projects in this book, we suggest making a projects directory in your home directory and keeping
+        all
+        your
+        projects there.
+
+        Open a terminal and enter the following commands to make a projects directory and a directory for the “Hello,
+        world!”
+        project within the projects directory.
+
+        For Linux, macOS, and PowerShell on Windows, enter this:
+      </p>
+      <code>$ mkdir ~/projects
+        $ cd ~/projects
+        $ mkdir hello_world
+        $ cd hello_world
+      </code>
+
+      <p>
+        Next, make a new source file and call it main.rs. Rust files always end with the .rs extension. If you’re using
+        more
+        than one word in your filename, use an underscore to separate them. For example, use hello_world.rs rather than
+        helloworld.rs.
+
+        Now open the main.rs file you just created and enter the code in Listing 1-1.
+
+        Filename: main.rs
+      </p>
+      <code>fn main() {
+        println!("Hello, world!");
+        }
+      </code>
+
+      Save the file and go back to your terminal window. On Linux or macOS, enter the following commands to compile and
+      run
+      the file:
+
+      <code>$ rustc main.rs
+        $ ./main
+        Hello, world!
+      </code>
+      <p>Regardless of your operating system, the string Hello, world! should print to the terminal.
+
+      </p>
+
+    </section>
+
+    <section class="main-section" id="Hello_Cargo">
+      <header>
+        <h1>Hello Cargo</h1>
+      </header>
+      <p>
+        Cargo is Rust’s build system and package manager. Most Rustaceans use this tool to manage their Rust projects
+        because
+        Cargo handles a lot of tasks for you, such as building your code, downloading the libraries your code depends
+        on, and
+        building those libraries. (We call libraries your code needs dependencies.)
+      </p>
+      Let’s create a new project using Cargo and look at how it differs from our original “Hello, world!” project.
+      Navigate
+      back to your projects directory (or wherever you decided to store your code). Then, on any operating system, run
+      the
+      following:
+
+      <code>$ cargo new hello_cargo
+        $ cd hello_cargo
+      </code>
+
+      <p>The first command creates a new directory called hello_cargo. We’ve named our project hello_cargo, and Cargo
+        creates its
+        files in a directory of the same name.
+
+        Go into the hello_cargo directory and list the files. You’ll see that Cargo has generated two files and one
+        directory
+        for us: a Cargo.toml file and a src directory with a main.rs file inside.
+
+        It has also initialized a new Git repository along with a .gitignore file. Git files won’t be generated if you
+        run cargo
+        new within an existing Git repository; you can override this behavior by using cargo new --vcs=git.</p>
+
+      <p>
+        Open Cargo.toml in your text editor of choice.
+      </p>
+
+      <code>[package]
+        name = "hello_cargo"
+        version = "0.1.0"
+        authors = ["Your Name <you@example.com>"]
+          edition = "2018"
+          [dependencies]
+      </code>
+
+      <p>This file is in the TOML (Tom’s Obvious, Minimal Language) format, which is Cargo’s configuration format.
+
+        The first line, [package], is a section heading that indicates that the following statements are configuring a
+        package.
+        As we add more information to this file, we’ll add other sections.
+
+        The next four lines set the configuration information Cargo needs to compile your program: the name, the
+        version, who
+        wrote it, and the edition of Rust to use. Cargo gets your name and email information from your environment, so
+        if that
+        information is not correct, fix the information now and then save the file. We’ll talk about the edition key in
+        Appendix
+        E.
+
+        The last line, [dependencies], is the start of a section for you to list any of your project’s dependencies. In
+        Rust,
+        packages of code are referred to as crates. We won’t need any other crates for this project, but we will in the
+        first
+        project in Chapter 2, so we’ll use this dependencies section then.</p>
+
+      <p>Now let’s look at what’s different when we build and run the “Hello, world!” program with Cargo! From your
+        hello_cargo
+        directory, build your project by entering the following command:</p>
+
+      <code>$ cargo build
+        Compiling hello_cargo v0.1.0 (file:///projects/hello_cargo)
+        Finished dev [unoptimized + debuginfo] target(s) in 2.85 secs
+      </code>
+
+      <p>his command creates an executable file in target/debug/hello_cargo (or target\debug\hello_cargo.exe on Windows)
+        rather
+        than in your current directory.</p>
+
+      <p>$ cargo build
+        Compiling hello_cargo v0.1.0 (file:///projects/hello_cargo)
+        Finished dev [unoptimized + debuginfo] target(s) in 2.85 secs
+      </p>
+
+      <code>$ cargo run
+        Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+        Running `target/debug/hello_cargo`
+        Hello, world!
+      </code>
+
+      <p>When your project is finally ready for release, you can use cargo build --release to compile it with
+        optimizations. This
+        command will create an executable in target/release instead of target/debug. The optimizations make your Rust
+        code run
+        faster, but turning them on lengthens the time it takes for your program to compile. This is why there are two
+        different
+        profiles: one for development, when you want to rebuild quickly and often, and another for building the final
+        program
+        you’ll give to a user that won’t be rebuilt repeatedly and that will run as fast as possible. If you’re
+        benchmarking
+        your code’s running time, be sure to run cargo build --release and benchmark with the executable in
+        target/release.</p>
+
+
+
+
+
+
+    </section>
+
+    <section class="main-section" id="Common_programming_concepts">
+      <header>
+        <h1>Common Programming Concepts</h1>
+      </header>
+      <p>This chapter covers concepts that appear in almost every programming language and how they work in Rust. Many
+        programming languages have much in common at their core. None of the concepts presented in this chapter are
+        unique to
+        Rust, but we’ll discuss them in the context of Rust and explain the conventions around using these concepts.
+
+        Specifically, you’ll learn about variables, basic types, functions, comments, and control flow. These
+        foundations will
+        be in every Rust program, and learning them early will give you a strong core to start from.</p>
+
+      <p>By default variables are immutable. This is one of many nudges Rust gives you to write your code in a way that
+        takes
+        advantage of the safety and easy concurrency that Rust offers. However, you still have the option to make your
+        variables
+        mutable. Let’s explore how and why Rust encourages you to favor immutability and why sometimes you might want to
+        opt
+        out.</p>
+
+      <code>fn main() {
+        let x = 5;
+        println!("The value of x is: {}", x);
+        x = 6;
+        println!("The value of x is: {}", x);
+        }</code>
+
+      <p>You should receive an error message, as shown in this output:</p>
+
+      <code>$ cargo run
+        Compiling variables v0.1.0 (file:///projects/variables)
+        error[E0384]: cannot assign twice to immutable variable `x`
+        --> src/main.rs:4:5
+        |
+        2 | let x = 5;
+        | -
+        | |
+        | first assignment to `x`
+        | help: make this binding mutable: `mut x`
+        3 | println!("The value of x is: {}", x);
+        4 | x = 6;
+        | ^^^^^ cannot assign twice to immutable variable
+
+        error: aborting due to previous error
+
+        For more information about this error, try `rustc --explain E0384`.
+        error: could not compile `variables`
+
+        To learn more, run the command again with --verbose.
+      </code>
+      <p>This example shows how the compiler helps you find errors in your programs. Even though compiler errors can be
+        frustrating, they only mean your program isn’t safely doing what you want it to do yet; they do not mean that
+        you’re not
+        a good programmer! Experienced Rustaceans still get compiler errors.
+
+        The error message indicates that the cause of the error is that you cannot assign twice to immutable variable x,
+        because
+        you tried to assign a second value to the immutable x variable.</p>
+
+      <p>n Rust, the compiler guarantees that when you state that a value won’t change, it really won’t change. That
+        means that
+        when you’re reading and writing code, you don’t have to keep track of how and where a value might change. Your
+        code is
+        thus easier to reason through.
+
+        But mutability can be very useful. Variables are immutable only by default; as you did in Chapter 2, you can
+        make them
+        mutable by adding mut in front of the variable name. In addition to allowing this value to change, mut conveys
+        intent to
+        future readers of the code by indicating that other parts of the code will be changing this variable’s value.
+      </p>
+
+      <code>fn main() {
+        let mut x = 5;
+        println!("The value of x is: {}", x);
+        x = 6;
+        println!("The value of x is: {}", x);
+        }
+      </code>
+
+      <p>We’re allowed to change the value that x binds to from 5 to 6 when mut is used. In some cases, you’ll want to
+        make a
+        variable mutable because it makes the code more convenient to write than if it had only immutable variables.</p>
+
+
+      <p>Being unable to change the value of a variable might have reminded you of another programming concept that most
+        other
+        languages have: constants. Like immutable variables, constants are values that are bound to a name and are not
+        allowed
+        to change, but there are a few differences between constants and variables.
+
+        First, you aren’t allowed to use mut with constants. Constants aren’t just immutable by default—they’re always
+        immutable.
+
+        You declare constants using the const keyword instead of the let keyword, and the type of the value must be
+        annotated.
+        We’re about to cover types and type annotations in the next section, “Data Types,” so don’t worry about the
+        details
+        right now. Just know that you must always annotate the type.
+
+        Constants can be declared in any scope, including the global scope, which makes them useful for values that many
+        parts
+        of code need to know about.
+
+        The last difference is that constants may be set only to a constant expression, not the result of a function
+        call or any
+        other value that could only be computed at runtime.
+
+        Here’s an example of a constant declaration where the constant’s name is MAX_POINTS and its value is set to
+        100,000.
+        (Rust’s naming convention for constants is to use all uppercase with underscores between words, and underscores
+        can be
+        inserted in numeric literals to improve readability):</p>
+
+      <code>const MAX_POINTS: u32 = 100_000;</code>
+      <p>Constants are valid for the entire time a program runs, within the scope they were declared in, making them a
+        useful
+        choice for values in your application domain that multiple parts of the program might need to know about, such
+        as the
+        maximum number of points any player of a game is allowed to earn or the speed of light.</p>
+
+      <p>As you saw in the guessing game tutorial in the “Comparing the Guess to the Secret Number” section in Chapter
+        2,
+        you can declare a new variable with the same name as a previous variable, and the new variable shadows the
+        previous variable. Rustaceans say that the first variable is shadowed by the second, which means that the second
+        variable’s value is what appears when the variable is used. We can shadow a variable by using the same
+        variable’s
+        name and repeating the use of the let keyword as follows:</p>
+
+      <code>fn main() {
+        let x = 5;
+
+        let x = x + 1;
+
+        let x = x * 2;
+
+        println!("The value of x is: {}", x);
+        }
+      </code>
+
+      <p>This program first binds x to a value of 5. Then it shadows x by repeating let x =, taking the original value
+        and adding 1 so the value of x is then 6. The third let statement also shadows x, multiplying the previous value
+        by 2 to give x a final value of 12. </p>
+
+      <p>Shadowing is different from marking a variable as mut, because we’ll get a compile-time error if we
+        accidentally try to reassign to this variable without using the let keyword. By using let, we can perform a
+        few transformations on a value but have the variable be immutable after those transformations have been
+        completed.
+
+        The other difference between mut and shadowing is that because we’re effectively creating a new variable when
+        we use the let keyword again, we can change the type of the value but reuse the same name. For example, say
+        our program asks a user to show how many spaces they want between some text by inputting space characters, but
+        we really want to store that input as a number:</p>
+
+      <code>fn main() {
+        let spaces = " ";
+        let spaces = spaces.len();
+        }
+      </code>
+    </section>
+
+    <section class="main-section" id="Data_types">
+      <header>
+        <h1>Data types</h1>
+      </header>
+      <p>Every value in Rust is of a certain data type, which tells Rust what kind of data is being specified so it
+        knows
+        how to work with that data. We’ll look at two data type subsets: scalar and compound.
+
+        Keep in mind that Rust is a statically typed language, which means that it must know the types of all variables
+        at
+        compile time. The compiler can usually infer what type we want to use based on the value and how we use it. </p>
+
+      <p>A scalar type represents a single value. Rust has four primary scalar types:
+        <ul>
+          <li>integers</li>
+          <li>floating-point number</li>
+          <li>Booleans</li>
+          <li>characters</li>
+          <li>characters</li>
+
+        </ul>
+        You may recognize these from other programming languages. Let’s jump into how they
+        work
+        in Rust.
+      </p>
+
+      <p>An integer is a number without a fractional component. This type declaration indicates that the value it’s
+        associated
+        with should be an unsigned integer (signed integer types start with i, instead of u) that takes up 32 bits of
+        space.
+        Table 3-1 shows the built-in integer types in Rust. Each variant in the Signed and Unsigned columns (for
+        example, i16)
+        can be used to declare the type of an integer value.
+      </p>
+
+      <table class="tg">
+        <thead>
+          <tr>
+            <th class="tg-r31r">Lenght</th>
+            <th class="tg-r31r">Signed</th>
+            <th class="tg-r31r">Unsigned</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tg-2p1g">8-bit</td>
+            <td class="tg-1jr3"><span style="color:var(--inline-code-color);background-color:#F1F1F1">i8</span></td>
+            <td class="tg-1jr3"><span style="color:var(--inline-code-color);background-color:#F1F1F1">u8</span></td>
+          </tr>
+          <tr>
+            <td class="tg-2p1g">16-bit</td>
+            <td class="tg-1jr3"><span style="color:var(--inline-code-color);background-color:#F1F1F1">i16</span></td>
+            <td class="tg-1jr3"><span style="color:var(--inline-code-color);background-color:#F1F1F1">u16</span></td>
+          </tr>
+          <tr>
+            <td class="tg-2p1g">32-bit</td>
+            <td class="tg-1jr3"><span style="color:var(--inline-code-color);background-color:#F1F1F1">i32</span></td>
+            <td class="tg-1jr3"><span style="color:var(--inline-code-color);background-color:#F1F1F1">u32</span></td>
+          </tr>
+          <tr>
+            <td class="tg-2p1g">64-bit</td>
+            <td class="tg-1jr3"><span style="color:var(--inline-code-color);background-color:#F1F1F1">i64</span></td>
+            <td class="tg-1jr3"><span style="color:var(--inline-code-color);background-color:#F1F1F1">u64</span></td>
+          </tr>
+          <tr>
+            <td class="tg-2p1g">128-bit</td>
+            <td class="tg-1jr3"><span style="color:var(--inline-code-color);background-color:#F1F1F1">i128</span></td>
+            <td class="tg-1jr3"><span style="color:var(--inline-code-color);background-color:#F1F1F1">u128</span></td>
+          </tr>
+          <tr>
+            <td class="tg-2p1g">arch</td>
+            <td class="tg-1jr3"><span style="color:var(--inline-code-color);background-color:#F1F1F1">isize</span></td>
+            <td class="tg-1jr3"><span style="color:var(--inline-code-color);background-color:#F1F1F1">usize</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Each variant can be either signed or unsigned and has an explicit size. Signed and unsigned refer to whether
+        it’s
+        possible for the number to be negative—in other words, whether the number needs to have a sign with it (signed)
+        or
+        whether it will only ever be positive and can therefore be represented without a sign (unsigned). It’s like
+        writing
+        numbers on paper: when the sign matters, a number is shown with a plus sign or a minus sign; however, when it’s
+        safe
+        to assume the number is positive, it’s shown with no sign. Signed numbers are stored using two’s complement
+        representation.
+
+        Each signed variant can store numbers from -(2n - 1) to 2n - 1 - 1 inclusive, where n is the number of bits that
+        variant uses. So an i8 can store numbers from -(27) to 27 - 1, which equals -128 to 127. Unsigned variants can
+        store
+        numbers from 0 to 2n - 1, so a u8 can store numbers from 0 to 28 - 1, which equals 0 to 255.
+      </p>
+
+      <p>Rust also has two primitive types for floating-point numbers, which are numbers with decimal points. Rust’s
+        floating-point types are f32 and f64, which are 32 bits and 64 bits in size, respectively. The default type is
+        f64
+        because on modern CPUs it’s roughly the same speed as f32 but is capable of more precision.
+
+        Here’s an example that shows floating-point numbers in action:</p>
+
+      <code>fn main() {
+        let x = 2.0; // f64
+
+        let y: f32 = 3.0; // f32
+        }
+      </code>
+
+      <p>Floating-point numbers are represented according to the IEEE-754 standard. The f32 type is a single-precision
+        float,
+        and f64 has double precision.
+      </p>
+
+      <p>As in most other programming languages, a Boolean type in Rust has two possible values: true and false.
+        Booleans are one byte in size. The Boolean type in Rust is specified using bool. For example:</p>
+
+      <code>fn main() {
+        let t = true;
+
+        let f: bool = false; // with explicit type annotation
+        }
+      </code>
+
+      <p>So far we’ve worked only with numbers, but Rust supports letters too. Rust’s char type is the language’s most
+        primitive alphabetic type, and the following code shows one way to use it. (Note that char literals are
+        specified with
+        single quotes, as opposed to string literals, which use double quotes.)</p>
+
+      <code>fn main() {
+        let c = 'z';
+        let z = 'ℤ';
+        let heart_eyed_cat = '😻';
+        }
+      </code>
+
+      <p>A tuple is a general way of grouping together a number of values with a variety of types into one compound
+        type.
+        Tuples have a fixed length: once declared, they cannot grow or shrink in size.
+
+        We create a tuple by writing a comma-separated list of values inside parentheses. Each position in the tuple has
+        a
+        type, and the types of the different values in the tuple don’t have to be the same. We’ve added optional type
+        annotations in this example:</p>
+
+      <code>fn main() {
+        let tup: (i32, f64, u8) = (500, 6.4, 1);
+        }
+      </code>
+
+      <p>Another way to have a collection of multiple values is with an array. Unlike a tuple, every element of an array
+        must
+        have the same type. Arrays in Rust are different from arrays in some other languages because arrays in Rust have
+        a
+        fixed length, like tuples.
+
+        In Rust, the values going into an array are written as a comma-separated list inside square brackets:</p>
+
+      <code>fn main() {
+        let a = [1, 2, 3, 4, 5];
+        }
+      </code>
+
+      <p>Arrays are useful when you want your data allocated on the stack rather than the heap (we will discuss the
+        stack and
+        the heap more in Chapter 4) or when you want to ensure you always have a fixed number of elements. An array
+        isn’t as
+        flexible as the vector type, though. A vector is a similar collection type provided by the standard library that
+        is
+        allowed to grow or shrink in size. If you’re unsure whether to use an array or a vector, you should probably use
+        a
+        vector.</p>
+
+
+
+
+    </section>
+
+  </main>
+
+  <!-- partial:index.partial.html -->
+  <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+  <!-- partial -->
+  <script src="./script.js"></script>
+
+</body>
+
+</html>

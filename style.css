@@ -1,0 +1,125 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', Arial, sans-serif;
+    line-height: 1.7;
+}
+
+header {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+code {
+    display: block;
+    text-align: left;
+    background-color: lightgrey;
+    margin: 10px;
+    padding: 10px;
+    word-break: normal;
+    word-wrap: normal;
+    white-space: pre-line;
+}
+
+#navbar {
+    height: 100%;
+    width: 30vw;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: grey;
+    overflow: hidden;
+    padding-top: 30px;
+    border-right: burlywood solid;
+
+}
+
+#navbar a, header {
+    text-decoration: none;
+    font-size: 30px;
+    padding: 10px 12px;
+    display: block;
+    color: black;
+    font-size: 3vw;
+}
+
+#navbar li {
+    border-top: 2px solid black;
+}
+
+#navbar a:hover {
+    color: blanchedalmond;
+}
+
+ul {
+    list-style-type: none;
+}
+
+#main-doc {
+    margin-left: 30vw;
+    padding: 0px 10px;
+}
+
+.tg {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.tg td {
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    overflow: hidden;
+    padding: 10px 5px;
+    word-break: normal;
+}
+
+.tg th {
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    overflow: hidden;
+    padding: 10px 5px;
+    word-break: normal;
+}
+
+.tg .tg-r31r {
+    background-color: #ffccc9;
+    border-color: #000000;
+    text-align: center;
+    vertical-align: top
+}
+
+.tg .tg-2p1g {
+    background-color: #32cb00;
+    border-color: #000000;
+    color: #333;
+    text-align: center;
+    vertical-align: middle
+}
+
+.tg .tg-1jr3 {
+    background-color: #F1F1F1;
+    border-color: #000000;
+    color: #333;
+    text-align: center;
+    vertical-align: top
+}
+
+
+@media screen and (max-height: 450px) {
+    #navbar {
+        padding-top: 15px;
+    }
+
+    #navbar a {
+        font-size: 18px;
+    }
+}
